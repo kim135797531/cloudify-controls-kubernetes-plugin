@@ -99,3 +99,30 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+**/.idea/
+
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+lib
+lib64
+__pycache__
+
+.tox
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# QuickBuild
+.qbcache/
+
+.noseids
