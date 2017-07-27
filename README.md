@@ -1,1 +1,1 @@
-# cloudify-kubernetes-plugin
+# cloudify-controls-kubernetes-plugin
