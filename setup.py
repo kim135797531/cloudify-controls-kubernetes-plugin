@@ -1,5 +1,4 @@
-########
-# Copyright (c) 2017 GigaSpaces Technologies Ltd. All rights reserved
+# coding=utf-8
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -34,6 +33,8 @@ setup(
     install_requires=[
         # Necessary dependency for developing plugins, do not remove!
         "cloudify-plugins-common>=4.1"
+        # TODO: kubernetes python 플러그인 넣기
+        # 'kubernetes-py>=x.x.x'
     ],
     test_requires=[
         "cloudify-dsl-parser>=4.1"

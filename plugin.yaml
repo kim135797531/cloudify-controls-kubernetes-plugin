@@ -5,4 +5,76 @@ plugins:
     package_name: cloudify-controls-kubernetes-plugin
     package_version: '0.1'
 
-
+"""
+# TODO: Kubernetes 필요한 개념 조사하기
+"""
+node_types:
+  cloudify.kubernetes.Container:
+    # TODO: Root인가?
+    derived_from: cloudify.nodes.Root
+    properties:
+      # TODO: Image인가?
+      image:
+        # TODO: 설명 쓰기
+        description: >
+          Kubernetes 이미지.
+        default: {}
+      name:
+        # TODO: 설명 쓰기
+        description: >
+          Kubernetes 이미지 이름.
+        type: string
+        default: ''
+      # TODO: 컨테이너인가?
+      use_external_resource:
+        description: >
+          컨테이너가 이미 존재하는가.
+        type: boolean
+        default: false
+    interfaces:
+      # TODO: lifecycle 필요한가?
+      cloudify.interfaces.lifecycle:
+        create:
+          # TODO: 컨테이너인가?
+          implementation: kubernetes.control_kubernetes.create_container
+          inputs:
+            params:
+              description: >
+                kubernetes-py 에서 받는 인자들
+              default: {}
+        start:
+          implementation: kubernetes.control_kubernetes.tasks.start
+          inputs:
+            params:
+              description: >
+                kubernetes-py 에서 받는 인자들
+              default: {}
+            processes_to_wait_for:
+              description: >
+                start 작업을 완료할 때까지 실행 되어야 하는 프로세스 목록
+                미충족시 재시도
+              default: []
+            retry_interval:
+              description: >
+                재시도할 시간 간격
+              type: integer
+              default: 1
+        stop:
+          implementation: kubernetes.control_kubernetes.tasks.stop
+          inputs:
+            params:
+              description: >
+                kubernetes-py 에서 받는 인자들
+              default: {}
+            retry_interval:
+              description: >
+                컨테이너 상태가 Exited 가 아닐 경우, 재시도 시간 간격
+              type: integer
+              default: 10
+        delete:
+          implementation: kubernetes.control_kubernetes.tasks.remove_container
+          inputs:
+            params:
+              description: >
+                kubernetes-py 에서 받는 인자들
+              default: {}
