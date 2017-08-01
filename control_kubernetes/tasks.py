@@ -12,10 +12,28 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import kubernetes
+
 # Cloudify 기본 import
 from cloudify import ctx
 from cloudify.exceptions import NonRecoverableError, RecoverableError
 from cloudify.decorators import operation
+
+from control_kubernetes import kubernetes_client
+
+
+@operation
+def test_get_pods(params, **kwargs):
+    client = kubernetes_client.get_client()
+    pods = client.list_pod_for_all_namespaces(watch=False)
+
+    ctx.logger.info('Listing pods...')
+    for i in pods.items:
+        ctx.logger.info('{}\t{}\t{}'.format(i.status.pod_ip,
+                                            i.metadata.namespace,
+                                            i.metadata.name))
+
+    ctx.instance.runtime_properties['some_property'] = params
 
 
 @operation

@@ -34,6 +34,14 @@ node_types:
     interfaces:
       # TODO: lifecycle 필요한가?
       cloudify.interfaces.lifecycle:
+        # TODO: test 지우기
+        test_get_pods:
+          implementation: kubernetes.control_kubernetes.test_get_pods
+          inputs:
+            params:
+              description: >
+                kubernetes-py 에서 받는 인자들
+              default: {}
         create:
           # TODO: 컨테이너인가?
           implementation: kubernetes.control_kubernetes.create_container

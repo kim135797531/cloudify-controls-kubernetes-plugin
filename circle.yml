@@ -11,8 +11,6 @@ checkout:
       fi
 
 dependencies:
-  post:
-    - pyenv local 2.7.9
   override:
     - pip install tox
 

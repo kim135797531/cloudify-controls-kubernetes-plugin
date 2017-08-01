@@ -34,7 +34,7 @@ setup(
         # Necessary dependency for developing plugins, do not remove!
         "cloudify-plugins-common>=4.1"
         # TODO: kubernetes python 플러그인 넣기
-        # 'kubernetes-py>=x.x.x'
+        'kubernetes>=2.0.0'
     ],
     test_requires=[
         "cloudify-dsl-parser>=4.1"
